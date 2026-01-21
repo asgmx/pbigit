@@ -1,0 +1,99 @@
+table 'SalesLT SalesOrderDetail'
+	lineageTag: 9ed942aa-6659-4658-a929-6b62026ac47f
+
+	column SalesOrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b469706-c62d-45c1-8b39-e2b11bdab641
+		summarizeBy: none
+		sourceColumn: SalesOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderDetailID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e5f67fa-498b-4fd2-aa9a-42e91bbb7399
+		summarizeBy: count
+		sourceColumn: SalesOrderDetailID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 70f524f0-0dac-4cea-9d97-fffbff9f4bfd
+		summarizeBy: sum
+		sourceColumn: OrderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 276b2bf1-dab3-4525-9fbc-ecc445693fa2
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: "€"\ #,0.###############;-"€"\ #,0.###############;"€"\ #,0.###############
+		lineageTag: d166ed21-5d73-4506-a1b1-527873f3973d
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"de-AT"}
+
+	column UnitPriceDiscount
+		dataType: decimal
+		formatString: "€"\ #,0.###############;-"€"\ #,0.###############;"€"\ #,0.###############
+		lineageTag: bcdaac22-18fd-4a91-b70b-ae4317e9b96e
+		summarizeBy: sum
+		sourceColumn: UnitPriceDiscount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"de-AT"}
+
+	column LineTotal
+		dataType: double
+		lineageTag: 766a0004-5e19-43a5-b071-f08fbe448127
+		summarizeBy: sum
+		sourceColumn: LineTotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rowguid
+		dataType: string
+		lineageTag: 8292b3c3-7651-4649-8147-26bfc6453d6e
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3f8aa790-0179-4b1f-8d93-a4b34d3f1170
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT SalesOrderDetail' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("gmx1.database.windows.net", "AdventureWorksLT"),
+				    SalesLT_SalesOrderDetail = Source{[Schema="SalesLT",Item="SalesOrderDetail"]}[Data]
+				in
+				    SalesLT_SalesOrderDetail
+
+	annotation PBI_ResultType = Table
+

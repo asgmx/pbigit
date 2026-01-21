@@ -1,0 +1,57 @@
+table 'SalesLT CustomerAddress'
+	lineageTag: 52ea8034-99f3-4847-b3f5-eb21c52ad5c5
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: cef26475-c6b6-4e65-9051-025a54441886
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressID
+		dataType: int64
+		formatString: 0
+		lineageTag: d46102ae-e77b-44c5-8c3a-b8f71e0b7ad6
+		summarizeBy: none
+		sourceColumn: AddressID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressType
+		dataType: string
+		lineageTag: 6c3b0878-23d7-410a-86d7-e3be2082b53c
+		summarizeBy: none
+		sourceColumn: AddressType
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 30941145-dc7e-4353-881f-63021f61e561
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 09c70c77-d132-4119-855c-d420ee3d494b
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT CustomerAddress' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("gmx1.database.windows.net", "AdventureWorksLT"),
+				    SalesLT_CustomerAddress = Source{[Schema="SalesLT",Item="CustomerAddress"]}[Data]
+				in
+				    SalesLT_CustomerAddress
+
+	annotation PBI_ResultType = Table
+

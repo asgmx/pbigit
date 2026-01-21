@@ -1,0 +1,88 @@
+table 'SalesLT Address'
+	lineageTag: 299f92bd-f971-4022-81f3-52f0db64bf55
+
+	column AddressID
+		dataType: int64
+		formatString: 0
+		lineageTag: c6c6f7d2-64c4-4201-93d5-68732e736a8d
+		summarizeBy: none
+		sourceColumn: AddressID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		lineageTag: d88455ca-fec2-4ea7-8148-5e374a3bb3f8
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine2
+		dataType: string
+		lineageTag: 97ac73da-ca57-4b6d-b335-0c3c71f7ea6c
+		summarizeBy: none
+		sourceColumn: AddressLine2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 87629cde-ad7c-4b3e-a7f1-880dfe613e46
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column StateProvince
+		dataType: string
+		lineageTag: 809963b9-c686-45a6-8eb3-be07c122b12f
+		summarizeBy: none
+		sourceColumn: StateProvince
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryRegion
+		dataType: string
+		lineageTag: 95b615a9-3f66-4cbf-ba17-9dbc75f803e2
+		summarizeBy: none
+		sourceColumn: CountryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: 3cd8a4ee-dc8d-470b-83e9-0f5cb0c20cce
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 76fcb8ba-6d30-4b37-a9a3-62a332826860
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3b0f837f-4410-42ff-8347-30f7cf65a6bb
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT Address' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("gmx1.database.windows.net", "AdventureWorksLT"),
+				    SalesLT_Address = Source{[Schema="SalesLT",Item="Address"]}[Data]
+				in
+				    SalesLT_Address
+
+	annotation PBI_ResultType = Table
+

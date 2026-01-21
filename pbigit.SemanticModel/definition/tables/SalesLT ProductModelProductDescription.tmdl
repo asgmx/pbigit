@@ -1,0 +1,57 @@
+table 'SalesLT ProductModelProductDescription'
+	lineageTag: bbecf63d-7604-46aa-bca9-6d5db1e14332
+
+	column ProductModelID
+		dataType: int64
+		formatString: 0
+		lineageTag: 12321e12-e4b2-411e-b297-bc3d7ba50006
+		summarizeBy: none
+		sourceColumn: ProductModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductDescriptionID
+		dataType: int64
+		formatString: 0
+		lineageTag: b6c6d599-fc7f-4ac7-a48a-59b49bad18e9
+		summarizeBy: none
+		sourceColumn: ProductDescriptionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Culture
+		dataType: string
+		lineageTag: 7c90cb7f-818f-4bd0-b50c-c81796933a3a
+		summarizeBy: none
+		sourceColumn: Culture
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 5030d4d3-18ca-4ac5-8225-3f2730891589
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 210bceb7-46e5-4f63-8c11-4b6a3a316851
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT ProductModelProductDescription' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("gmx1.database.windows.net", "AdventureWorksLT"),
+				    SalesLT_ProductModelProductDescription = Source{[Schema="SalesLT",Item="ProductModelProductDescription"]}[Data]
+				in
+				    SalesLT_ProductModelProductDescription
+
+	annotation PBI_ResultType = Table
+

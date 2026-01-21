@@ -1,0 +1,157 @@
+table 'SalesLT Product'
+	lineageTag: 7715bc24-01ce-4f3d-8f6c-198ac2bd8b40
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 87b947ec-4407-47b0-bbf8-295c147d89e7
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: b01da7bf-45b3-4dc7-8628-847b8bd973c3
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductNumber
+		dataType: string
+		lineageTag: c3262b23-d6b1-443c-af51-a03c250b65e7
+		summarizeBy: none
+		sourceColumn: ProductNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: e8ae3574-4ee0-4971-b389-80eb2f1a5da0
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column StandardCost
+		dataType: decimal
+		formatString: "€"\ #,0.###############;-"€"\ #,0.###############;"€"\ #,0.###############
+		lineageTag: c544a8a8-6ec7-4189-a568-7d504f4fcf24
+		summarizeBy: sum
+		sourceColumn: StandardCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"de-AT"}
+
+	column ListPrice
+		dataType: decimal
+		formatString: "€"\ #,0.###############;-"€"\ #,0.###############;"€"\ #,0.###############
+		lineageTag: bd99a8f6-ebe6-4479-a708-a950bb3efed4
+		summarizeBy: sum
+		sourceColumn: ListPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"de-AT"}
+
+	column Size
+		dataType: string
+		lineageTag: 1182c6a5-cc5a-414e-9d8c-0d6d7cc48e39
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weight
+		dataType: double
+		lineageTag: e0ed43b3-30df-423a-82e5-ccfd978e2eec
+		summarizeBy: sum
+		sourceColumn: Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ProductCategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 76353e8d-5058-4137-8e2b-bd345336f1b3
+		summarizeBy: none
+		sourceColumn: ProductCategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductModelID
+		dataType: int64
+		formatString: 0
+		lineageTag: 95be38d2-c3d9-4cd6-85f3-8ab2e3afeee0
+		summarizeBy: none
+		sourceColumn: ProductModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SellStartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a841318f-bb06-45e0-a493-982ed3fad254
+		summarizeBy: none
+		sourceColumn: SellStartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column SellEndDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9ed7c773-04f2-414f-8cb9-cc64739caf8d
+		summarizeBy: none
+		sourceColumn: SellEndDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscontinuedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 19986c79-01db-4fff-bfc6-08c3c977049f
+		summarizeBy: none
+		sourceColumn: DiscontinuedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ThumbnailPhotoFileName
+		dataType: string
+		lineageTag: b05dffa7-ef4a-4291-aaa7-f115e403ecf4
+		summarizeBy: none
+		sourceColumn: ThumbnailPhotoFileName
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 92580266-a806-48d1-a7ed-cbd2a35e01ce
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eb644532-082a-4384-9e8b-8c9fce9d6665
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT Product' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("gmx1.database.windows.net", "AdventureWorksLT"),
+				    SalesLT_Product = Source{[Schema="SalesLT",Item="Product"]}[Data]
+				in
+				    SalesLT_Product
+
+	annotation PBI_ResultType = Table
+

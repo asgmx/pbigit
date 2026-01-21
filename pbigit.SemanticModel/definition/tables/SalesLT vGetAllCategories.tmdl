@@ -1,0 +1,39 @@
+table 'SalesLT vGetAllCategories'
+	lineageTag: 4a12f9c0-31cf-4a3b-bdd5-7673f9a089d6
+
+	column ParentProductCategoryName
+		dataType: string
+		lineageTag: 990d60cb-148a-4309-90a7-eb3d0d6945a2
+		summarizeBy: none
+		sourceColumn: ParentProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryName
+		dataType: string
+		lineageTag: 74344210-dc49-4f12-a801-80dc015208c6
+		summarizeBy: none
+		sourceColumn: ProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: efa0fac9-8946-47d4-a81a-3ae29bd433a5
+		summarizeBy: count
+		sourceColumn: ProductCategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT vGetAllCategories' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("gmx1.database.windows.net", "AdventureWorksLT"),
+				    SalesLT_vGetAllCategories = Source{[Schema="SalesLT",Item="vGetAllCategories"]}[Data]
+				in
+				    SalesLT_vGetAllCategories
+
+	annotation PBI_ResultType = Table
+
