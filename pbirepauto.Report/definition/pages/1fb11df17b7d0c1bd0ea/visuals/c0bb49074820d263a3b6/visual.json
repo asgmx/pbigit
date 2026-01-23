@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "SalesLT Address.StateProvince",
-              "nativeQueryRef": "StateProvince",
-              "active": true
+              "nativeQueryRef": "State/Province",
+              "active": true,
+              "displayName": "State/Province"
             }
           ]
         },
