@@ -9,6 +9,15 @@
         "page": "2.3.0"
       },
       "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "SqlbiDataGoblinTheme_PartialAr06031518782503853.json",
+      "reportVersionAtImport": {
+        "visual": "2.4.0",
+        "report": "3.0.0",
+        "page": "2.3.0"
+      },
+      "type": "RegisteredResources"
     }
   },
   "objects": {
@@ -49,6 +58,17 @@
           "name": "CY25SU12",
           "path": "BaseThemes/CY25SU12.json",
           "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "SqlbiDataGoblinTheme_PartialAr06031518782503853.json",
+          "path": "SqlbiDataGoblinTheme_PartialAr06031518782503853.json",
+          "type": "CustomTheme"
         }
       ]
     }
