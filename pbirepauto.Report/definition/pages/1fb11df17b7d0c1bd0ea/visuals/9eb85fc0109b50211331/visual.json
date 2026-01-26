@@ -21,7 +21,8 @@
                   {
                     "value": "Quick summary Report",
                     "textStyle": {
-                      "fontSize": "16pt"
+                      "fontSize": "16pt",
+                      "color": "#d64550"
                     }
                   }
                 ]
