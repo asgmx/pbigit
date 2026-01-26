@@ -9624,22 +9624,6 @@ cultureInfo en-US
 			        }
 			      ]
 			    },
-			    "SalesLT_SalesOrderDetail.rowguid": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "SalesLT SalesOrderDetail",
-			          "ConceptualProperty": "rowguid"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "rowguid": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
 			    "SalesLT_SalesOrderDetail.modified_date": {
 			      "Definition": {
 			        "Binding": {
