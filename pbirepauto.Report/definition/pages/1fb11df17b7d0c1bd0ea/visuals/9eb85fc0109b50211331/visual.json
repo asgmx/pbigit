@@ -21,6 +21,7 @@
                   {
                     "value": "Quick summary ",
                     "textStyle": {
+                      "fontWeight": "bold",
                       "fontSize": "16pt",
                       "color": "#d64550"
                     }
