@@ -69,14 +69,6 @@ table 'SalesLT SalesOrderDetail'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column rowguid
-		dataType: string
-		lineageTag: 8292b3c3-7651-4649-8147-26bfc6453d6e
-		summarizeBy: none
-		sourceColumn: rowguid
-
-		annotation SummarizationSetBy = Automatic
-
 	column ModifiedDate
 		dataType: dateTime
 		formatString: General Date
@@ -91,9 +83,12 @@ table 'SalesLT SalesOrderDetail'
 		source =
 				let
 				    Source = Sql.Database("gmx1.database.windows.net", "AdventureWorksLT"),
-				    SalesLT_SalesOrderDetail = Source{[Schema="SalesLT",Item="SalesOrderDetail"]}[Data]
+				    SalesLT_SalesOrderDetail = Source{[Schema="SalesLT",Item="SalesOrderDetail"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(SalesLT_SalesOrderDetail,{"rowguid"})
 				in
-				    SalesLT_SalesOrderDetail
+				    #"Removed Columns"
 
 	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
 
