@@ -19,10 +19,17 @@
               {
                 "textRuns": [
                   {
-                    "value": "Quick summary Report",
+                    "value": "Quick summary ",
                     "textStyle": {
                       "fontSize": "16pt",
                       "color": "#d64550"
+                    }
+                  },
+                  {
+                    "value": "Report",
+                    "textStyle": {
+                      "fontSize": "16pt",
+                      "color": "#414fb1"
                     }
                   }
                 ]
